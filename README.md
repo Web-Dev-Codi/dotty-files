@@ -44,7 +44,7 @@ A carefully curated collection of configuration files for my Linux desktop envir
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/dotty-files.git ~/.dotty-files
+   git clone https://github.com/Web-Dev-Codi/dotty-files.git ~/.dotty-files
    ```
 
 2. Install required dependencies:
