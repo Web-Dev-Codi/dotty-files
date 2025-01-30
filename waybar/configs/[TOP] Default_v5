@@ -25,8 +25,8 @@
 	"custom/separator#dot-line",
 	"group/mobo_drawer",
 	"custom/separator#line",
-	"custom/weather",
-	"custom/separator#blank",
+	"custom/gpu-temp",
+  "custom/separator#blank",
 	"custom/cava_mviz",
 	],
 

@@ -17,6 +17,14 @@
 	"tooltip": true,
 },
 
+"custom/gpu-temp": {
+  "exec": "echo '{\"text\": \"'$(sensors amdgpu-* | grep 'edge' | awk '{printf \"%.0f\", $2}' | tr -d '+°C')'\", \"class\": \"'$(sensors amdgpu-* | grep 'edge' | awk '{temp=$2; gsub(/[+°C]/, \"\", temp); if (temp < 60) print \"normal\"; else if (temp < 75) print \"warning\"; else print \"critical\"}')'\"}'",
+  "format": "󰢮 GPU {}°C",
+  "interval": 3,
+  "tooltip": true,
+  "return-type": "json"
+},
+
 "custom/file_manager": {
 	"format": " ",
 	"on-click": "thunar",
