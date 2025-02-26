@@ -126,5 +126,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions or suggestions, feel free to:
 
-- Reach out on Web-Dev-Codi: www.webdevcodi.com
+- Reach Me: www.webdevcodi.com
 - Send an email: webdevcodi@gmail.com
