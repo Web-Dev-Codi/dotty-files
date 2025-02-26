@@ -27,7 +27,9 @@
 	"custom/separator#line",
 	"custom/gpu-temp",
   "custom/separator#blank",
-	"custom/cava_mviz",
+  "custom/separator#line",
+  "custom/weather",
+  "custom/cava_mviz",
 	],
 
 "modules-center": [

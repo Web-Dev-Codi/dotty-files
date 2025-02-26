@@ -3,17 +3,35 @@
 # This script for selecting wallpapers (SUPER W)
 
 # WALLPAPERS PATH
+terminal=kitty
 wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
+wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+
+rofi_override="element-icon{size:${icon_size}px;}"
+
+# Directory for swaync
+iDIR="$HOME/.config/swaync/images"
+iDIRi="$HOME/.config/swaync/icons"
 
 # variables
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+rofi_theme="$HOME/.config/rofi/config-wallpaper.rasi"
+focused_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
+
+# Get monitor width and DPI
+monitor_width=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .width')
+scale_factor=$(hyprctl monitors -j | jq -r --arg mon "$focused_monitor" '.[] | select(.name == $mon) | .scale')
+
+icon_size=$(echo "scale=1; ($monitor_width * 3) / ($scale_factor * 400)" | bc)
+
+rofi_override="element-icon{size:${icon_size}%;}"
+
 # swww transition config
 FPS=60
 TYPE="any"
 DURATION=2
 BEZIER=".43,1.19,1,.4"
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
 # Check if swaybg is running
 if pidof swaybg > /dev/null; then
@@ -21,13 +39,13 @@ if pidof swaybg > /dev/null; then
 fi
 
 # Retrieve image files using null delimiter to handle spaces in filenames
-mapfile -d '' PICS < <(find "${wallDIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
+mapfile -d '' PICS < <(find -L "${wallDIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.pnm" -o -iname "*.tga" -o -iname "*.tiff" -o -iname "*.webp" -o -iname "*.bmp" -o -iname "*.farbfeld" -o -iname "*.png" -o -iname "*.gif" \) -print0)
 
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
 
 # Rofi command
-rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
+rofi_command="rofi -i -show -dmenu -config $rofi_theme -theme-str $rofi_override"
 
 # Sorting Wallpapers
 menu() {
@@ -56,7 +74,6 @@ swww query || swww-daemon --format xrgb
 main() {
   choice=$(menu | $rofi_command)
   
-  # Trim any potential whitespace or hidden characters
   choice=$(echo "$choice" | xargs)
   RANDOM_PIC_NAME=$(echo "$RANDOM_PIC_NAME" | xargs)
 
@@ -76,7 +93,6 @@ main() {
     exit 0
   fi
 
-  # Find the index of the selected file
   pic_index=-1
   for i in "${!PICS[@]}"; do
     filename=$(basename "${PICS[$i]}")
@@ -92,6 +108,7 @@ main() {
     echo "Image not found."
     exit 1
   fi
+
 }
 
 # Check if rofi is already running
@@ -108,3 +125,23 @@ wait $!
 sleep 2
 "$SCRIPTSDIR/Refresh.sh"
 
+sleep 1
+# Check if user selected a wallpaper
+if [[ -n "$choice" ]]; then
+  sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
+  if [ -d "$sddm_sequoia" ]; then
+    if yad --question --text="Set wallpaper as SDDM background?\nNOTE: This only applies to SEQUOIA SDDM Theme" --title="SDDM Background" --timeout=10 --ok-label="Yes"; then
+
+    # Check if terminal exists
+    if ! command -v "$terminal" &>/dev/null; then
+    notify-send -i "$iDIR/ja.png" "Missing $terminal" "Install $terminal to enable setting of wallpaper background"
+    exit 1
+    fi
+
+    # Open terminal to enter password
+    $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+    sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
+    notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+    fi
+  fi
+fi
