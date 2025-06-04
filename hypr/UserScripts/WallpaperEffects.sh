@@ -76,6 +76,11 @@ main() {
             # Apply selected effect
             notify-send -u normal -i "$iDIR/ja.png"  "Applying:" "$choice effects"
             eval "${effects[$choice]}"
+            
+            # intial kill process
+            for pid in swaybg mpvpaper; do
+            killall -SIGUSR1 "$pid"
+            done
 
             sleep 1
             swww img -o "$focused_monitor" "$wallpaper_output" $SWWW_PARAMS &
@@ -105,7 +110,20 @@ sleep 1
 if [[ -n "$choice" ]]; then
   sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
   if [ -d "$sddm_sequoia" ]; then
-    if yad --question --text="Set wallpaper as SDDM background?\nNOTE: This only applies to SEQUOIA SDDM Theme" --title="SDDM Background" --timeout=10 --ok-label="Yes"; then
+  
+	# Check if yad is running to avoid multiple yad notification
+	if pidof yad > /dev/null; then
+	  killall yad
+	fi
+	
+	if yad --info --text="Set current wallpaper as SDDM background?\n\nNOTE: This only applies to SEQUOIA SDDM Theme" \
+    --text-align=left \
+    --title="SDDM Background" \
+    --timeout=5 \
+    --timeout-indicator=right \
+    --button="yad-yes:0" \
+    --button="yad-no:1" \
+    ; then
 
     # Check if terminal exists
     if ! command -v "$terminal" &>/dev/null; then

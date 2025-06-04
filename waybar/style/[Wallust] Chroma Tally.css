@@ -20,47 +20,13 @@ window#waybar {
   border-color: @color12;
 }
 
-#custom-gpu-temp {
-  padding: 0 3px;
-}
-
-#custom-gpu-temp.normal {
-  color: #a6e3a1; /* Cool green color for normal temps */
-}
-
-#custom-gpu-temp.warning {
-  color: #f9e2af; /* Yellow/amber for warning temps */
-}
-
-#custom-gpu-temp.critical {
-  color: #f38ba8; /* Red for critical temps */
-  animation: blink 1s infinite; /* Optional: Make it blink when critical */
-}
-
-/* Optional: Define the blink animation for critical temperatures */
-@keyframes blink {
-  to {
-    opacity: 0.5;
-  }
-}
-
 #workspaces {
   background: transparent;
-  padding: 0px 1px;
+  padding: 2px;
   border-radius: 15px;
   border: 0px;
   font-style: normal;
   color: #0f1419;
-}
-
-#custom-gpu-temp {
-  padding: 0 10px;
-  color: #ffffff;
-  /* Optional: Add an icon */
-  /* background-image: url("gpu2.png"); */
-  /* background-position: left; */
-  /* background-repeat: no-repeat; */
-  padding-left: 6px;
 }
 
 #taskbar button,
@@ -126,6 +92,7 @@ tooltip {
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
+#custom-dot_update,
 #custom-file_manager,
 #custom-keybinds,
 #custom-keyboard,
@@ -134,8 +101,11 @@ tooltip {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
+#custom-quit,
+#custom-reboot,
 #custom-settings,
 #custom-spotify,
 #custom-swaync,
@@ -278,6 +248,7 @@ tooltip {
   color: #d08770;
 }
 
+#backlight-slider slider,
 #pulseaudio-slider slider {
   min-width: 0px;
   min-height: 0px;
@@ -287,33 +258,37 @@ tooltip {
   box-shadow: none;
 }
 
+#backlight-slider trough,
 #pulseaudio-slider trough {
   min-width: 80px;
   min-height: 5px;
   border-radius: 5px;
 }
 
+#backlight-slider highlight,
 #pulseaudio-slider highlight {
   min-height: 10px;
   border-radius: 5px;
 }
 
-#backlight-slider slider {
-  min-width: 0px;
-  min-height: 0px;
-  opacity: 0;
-  background-image: none;
-  border: none;
-  box-shadow: none;
+/* GPU Temperature Module */
+#custom-gpu-temp {
+  padding: 0 10px;
 }
 
-#backlight-slider trough {
-  min-width: 80px;
-  min-height: 10px;
-  border-radius: 5px;
+#custom-gpu-temp.cool {
+  color: #a3be8c;
 }
 
-#backlight-slider highlight {
-  min-width: 10px;
-  border-radius: 5px;
+#custom-gpu-temp.normal {
+  color: #ebcb8b;
+}
+
+#custom-gpu-temp.hot {
+  color: #bf616a;
+}
+
+#custom-gpu-temp.error,
+#custom-gpu-temp.no-data {
+  color: #b48ead;
 }

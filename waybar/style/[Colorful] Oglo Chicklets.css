@@ -83,6 +83,7 @@ button.active {
 #custom-browser,
 #custom-cava_mviz,
 #custom-cycle_wall,
+#custom-dot_update,
 #custom-file_manager,
 #custom-keybinds,
 #custom-keyboard,
@@ -91,8 +92,11 @@ button.active {
 #custom-hint,
 #custom-hypridle,
 #custom-menu,
+#custom-playerctl,
 #custom-power_vertical,
 #custom-power,
+#custom-quit,
+#custom-reboot,
 #custom-settings,
 #custom-spotify,
 #custom-swaync,
@@ -110,6 +114,8 @@ button.active {
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay{
     color: #ffffff;
+    padding-top: 2px;
+    padding-bottom: 2px;
     border-radius: 5px;
 	padding-left: 5px;
 	padding-right: 5px;

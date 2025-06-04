@@ -22,7 +22,6 @@ workspace = 7, monitor:HDMI-A-2, default:true
 workspace = 8, monitor:HDMI-A-2
 
 
-
 # example rules (from wiki)
 # workspace = 3, rounding:false, decorate:false
 # workspace = name:coding, rounding:false, decorate:false, gapsin:0, gapsout:0, border:false, decorate:false, monitor:DP-1
