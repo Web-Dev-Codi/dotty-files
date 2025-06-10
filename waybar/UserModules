@@ -13,5 +13,14 @@
         "format": "󰢮 {}",
         "tooltip": true,
         "on-click": "kitty -e nvtop"
+    },
+    
+    "custom/cpu-temp": {
+        "exec": "$HOME/.config/waybar/scripts/cpu-temp.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "󰍛 {}",
+        "tooltip": true,
+        "on-click": "kitty -e htop"
     }
 }

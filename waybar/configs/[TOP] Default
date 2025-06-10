@@ -48,6 +48,7 @@
 	"tray",
 	"network#speed",
 	"custom/separator#dot-line",
+	"custom/cpu-temp",
 	"custom/gpu-temp",
 	"custom/separator#dot-line",
 	"group/mobo_drawer",
