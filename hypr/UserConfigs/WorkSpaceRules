@@ -18,8 +18,7 @@ workspace = 3, monitor:DP-2, default:true
 workspace = 4, monitor:DP-2
 workspace = 5, monitor:HDMI-A-1, default:true
 workspace = 6, monitor:HDMI-A-1
-workspace = 7, monitor:HDMI-A-2, default:true
-workspace = 8, monitor:HDMI-A-2
+
 
 
 # example rules (from wiki)

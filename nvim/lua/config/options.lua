@@ -1,6 +1,5 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.loader.enable()
 vim.g.lazyvim_picker = "auto"
@@ -25,6 +24,7 @@ vim.g.lazyvim_eslint_auto_format = true
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
+
 -- views can only be fully collapsed with the global statusline
 opt.laststatus = 2
 opt.tabstop = 2
@@ -39,6 +39,7 @@ opt.spell = true
 opt.spelllang:append("en")
 opt.wrap = true
 opt.completeopt = "menuone,noselect"
+opt.foldenable = false -- Disable folding completely
 
 -- Enable EditorConfig integration
 vim.g.editorconfig = true

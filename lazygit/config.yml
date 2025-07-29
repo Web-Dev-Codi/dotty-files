@@ -7,29 +7,29 @@ gui:
   expandFocusedSidePanel: true
   theme:
     activeBorderColor:
-      - "#a6da95"
+      - "#5ef1ff"
       - bold
     inactiveBorderColor:
-      - "#a5adcb"
+      - "#7b8496"
     optionsTextColor:
-      - "#8aadf4"
+      - "#3c4048"
     selectedLineBgColor:
-      - "#363a4f"
+      - "#3c4048"
     cherryPickedCommitBgColor:
-      - "#494d64"
+      - "#3c4048"
     cherryPickedCommitFgColor:
-      - "#b7bdf8"
+      - "#ff5ea0"
     unstagedChangesColor:
-      - "#ed8796"
+      - "#ff5ef1"
     defaultFgColor:
-      - "#cad3f5"
+      - "#ffbd5e"
     searchingActiveBorderColor:
-      - "#eed49f"
+      - "#ff5ef1"
   commitLength:
     show: true
   branchColors:
     "release": "#eed49f"
-    "hotfix": "#ed8796"
+    "hotfix": "#eeff55"
     "feature": "#a6da95"
   showBottomLine: false # for hiding the bottom information line (unless it has important information to tell you)
   nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
